@@ -24,7 +24,7 @@ Note: This only works for windows systems
 - Scan/Create/Read a qrcode
 
 # Commands
-> open <application-name> //Open an application<br>
+> open \<application-name> //Open an application<br>
 > create qr code //Create qr code<br>
 > read qr code //Read qr code from file path<br>
 > scan qr code //Scan qr code using cam<br>
