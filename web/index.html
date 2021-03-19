@@ -1,0 +1,58 @@
+<!-- Created By Varun.v.Gowda -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="icon" href="./icon.ico" type="image/icon">
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript" src="/eel.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="title">Chatbot</div>
+        <div class="form">
+            <div class="bot-inbox inbox">
+                <div class="icon">
+                    <img src="./bot.svg">
+                </div>
+                <div class="msg-header">
+                    <p>Hello there, how can I help you?</p>
+                </div>
+            </div>
+        </div>
+        <div class="typing-field">
+            <div class="input-data">
+                <input id="data" type="text" onkeypress='checkEnterClick(event)' placeholder="Type something here.." required>
+                <button id="send-btn" onclick="send()">Send</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    eel.expose(dialog);
+    function dialog(question){
+        var value = window.prompt(question)
+        return value
+    }
+    eel.expose(respond);
+    function respond(msg_reply){
+        $msg = '<div class="bot-inbox inbox"><div class="icon"><img src="./bot.svg"></div><div class="msg-header"><p>'+msg_reply+'</p></div></div>';
+        $(".form").append($msg);
+    }
+    function send(){
+        var value = $("#data").val();
+        $msg = '<div class="user-inbox inbox"><div class="msg-header"><p>'+ value +'</p></div><div class=user-inbox icon><img src="./profile.svg"></div>';
+        $(".form").append($msg);
+        $("#data").val('');
+        eel.chat(value)(respond);
+    }
+    function checkEnterClick(e){
+        if(e.keyCode == 13){
+        send()
+    }
+}
+</script>
+</html>
