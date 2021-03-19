@@ -88,9 +88,8 @@ def scan_qr_code():
     cap.release()
     cv2.destroyAllWindows()
 
-def read_qr_code(image):
-    path = str(image)
-    path = path.replace('read qr code ',"")
+def read_qr_code():
+    path = str(eel.("Data to be inserted")())
     qr = decode(Image.open(path))
     data = ""
     for obj in qr:
@@ -98,7 +97,7 @@ def read_qr_code(image):
         data = data[1:]
     return "Data: "+data
 
-def generate_qr_code(content):
+def generate_qr_code():
     name = str(eel.dialog('Name to save your qr-code as')())
     if name == 'none' or name == '':
         return "Couldn't create qrcode"
